@@ -6,12 +6,30 @@ def clear_screen():
     for widget in root.winfo_children():
         widget.destroy()
 
+# Browse for Collaborators
+# Search Script
+# Search Directors
+def producer_dashboard():
+    clear_screen()
+    tk.Label(root, text="Producer Dashboard", font=("Arial", 18)).pack(pady=30)
+
+    # creating frame to hold the buttons horizontally on the screen
+    button_frame = tk.Frame(root)
+    button_frame.pack(pady=20)
+
+    # buttons added to frame side="left"
+    tk.Button(button_frame, text="Browse for Collaborators", width=25, command=lambda: print("Searching Collaborators")).pack(side="left", padx=10)
+    tk.Button(button_frame, text="Searching Scripts", width=25, command=lambda: print("Searching Scripts")).pack(side="left", padx=10)
+    tk.Button(button_frame, text="Search Directors", width=25, command=lambda: print("Searching Directors")).pack(side="left", padx=10)
+
+
+
 def screenwriter_dashboard():
     clear_screen()
-    tk.Label(root, text="What do you want to do?", font=("Arial", 18)).pack(pady=30)
+    tk.Label(root, text="Screenwriter Dashboard", font=("Arial", 18)).pack(pady=30)
 
     # 3 buttons
-    tk.Button(root, text="Post Idea", width=25, command=lambda: print("Post Idea clicked")).pack(pady=10)
+    tk.Button(root, text="Pitch Idea", width=25, command=lambda: print("Post Idea clicked")).pack(pady=10)
     tk.Button(root, text="Browse for Collaborators", width=25, command=lambda: print("Browse Collaborators clicked")).pack(pady=10)
     tk.Button(root, text="Browse Ideas", width=25, command=lambda: print("Browse Ideas clicked")).pack(pady=10)
 
@@ -34,6 +52,8 @@ def select_occupation():
         selected = job_variable.get()
         if selected == "Screenwriter":
             screenwriter_dashboard()
+        elif selected == "Producer":
+            producer_dashboard()
         else:
             print(f"Logic for {selected} not implemented yet")
     # confirming option
