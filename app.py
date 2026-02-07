@@ -171,11 +171,7 @@ def start_screen():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Welcome to The Pitch!", font=("Georgia", 20), bg = "#f2d6c2").pack(pady=20)
-
-    # tk.Button(center, text="Sign In", width=25, command=sign_in).pack(pady=10)
-    # tk.Button(center, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
-    # tk.Button(center, text="Continue as Guest", width=25, command=continue_as_guest).pack(pady=10)
+    tk.Label(center, text="Welcome to The Pitch!", font=("Georgia", 20, "bold"), bg = "#f2d6c2").pack(pady=20)
 
     ctk.CTkButton(center, text="Sign In", width=200, corner_radius=20, fg_color="#d87455", hover_color="#b35f45", command=sign_in).pack(pady=10)
     ctk.CTkButton(center, text="Create Account", width=200, corner_radius=20, fg_color="#d87455", hover_color="#b35f45", command=create_account_screen).pack(pady=10)
@@ -188,23 +184,23 @@ def create_account_screen():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Create Account", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Create Account", font=("Georgia", 22, "bold"), bg = "#f2d6c2").pack(pady=20)
 
-    tk.Label(center, text="Username").pack()
-    user_txt = tk.Entry(center)
-    user_txt.pack(pady=5)
+    #tk.Label(center, text="Username").pack()
+    user_txt = ctk.CTkEntry(center, placeholder_text="Username", width=250, height=40, corner_radius=20)
+    user_txt.pack(pady=10)
 
-    tk.Label(center, text="Password").pack()
-    pass_txt = tk.Entry(center, show="*")
-    pass_txt.pack(pady=5)
+    #tk.Label(center, text="Password").pack()
+    pass_txt = ctk.CTkEntry(center, placeholder_text="Password", show="*", width=250, height=40, corner_radius=20)
+    pass_txt.pack(pady=10)
 
-    message = tk.Label(center, text="", fg="red")
+    message = tk.Label(center, text="", fg="red", bg="#f2d6c2")
     message.pack(pady=5)
 
 
     def create_account():
         username = user_txt.get()
-        user = username;
+        #user = username;
         password = pass_txt.get()
 
         if username in accounts:
@@ -220,9 +216,13 @@ def create_account_screen():
         account = userClass.User(username, password)    # Creating a user object to add to the account to database
         connect[username] = account     # Saving the class object for the given username
 
+        if not user_txt.get() or not pass_txt.get():
+            message.config(text="Please fill in all fields.")
+            return
+
         select_occupation()
-    tk.Button(center, text="Create Account", command=create_account).pack(pady=15)
-    tk.Button(center, text="Back", command=start_screen).pack()
+    ctk.CTkButton(center, text="Create Account", width=250, height=45, corner_radius=20, fg_color="#3a3a3a", hover_color="#555555", command=create_account).pack(pady=15)
+    ctk.CTkButton(center, text="← Back", width=80, corner_radius=15, fg_color="#d87455", hover_color="#b35f45", command=start_screen).pack()
 
 
 def sign_in():
@@ -232,23 +232,23 @@ def sign_in():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Sign In", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Welcome Back! \nSign In", font=("Georgia", 22, "bold"), bg = "#f2d6c2").pack(pady=20)
 
-    tk.Label(center, text="Username").pack()
-    user_txt = tk.Entry(center)
-    user_txt.pack(pady=5)
+    #tk.Label(center, text="Username").pack()
+    user_txt = ctk.CTkEntry(center, placeholder_text="Username", width=250, height=40, corner_radius=20)
+    user_txt.pack(pady=10)
 
-    tk.Label(center, text="Password").pack()
-    pass_txt = tk.Entry(center, show="*")
-    pass_txt.pack(pady=5)
+    #tk.Label(center, text="Password").pack()
+    pass_txt = ctk.CTkEntry(center, placeholder_text="Password", show="*", width=250, height=40, corner_radius=20)
+    pass_txt.pack(pady=10)
 
-    message = tk.Label(center, text="", fg="red")
+    message = tk.Label(center, text="", fg="red", bg="#f2d6c2")
     message.pack(pady=5)
 
 
     def sign():
         username = user_txt.get()
-        user = username;
+        #user = username;
         password = pass_txt.get()
 
 
@@ -257,8 +257,9 @@ def sign_in():
             return
         select_occupation()
 
-    tk.Button(center, text="Sign In", command=sign).pack(pady=15)
-    tk.Button(center, text="Back", command=start_screen).pack()
+    ctk.CTkButton(center, text="Sign In", width=250, height=45, corner_radius=20, fg_color="#3a3a3a", hover_color="#555555", command=sign).pack(pady=15)
+    ctk.CTkButton(center, text="← Back", width=80, corner_radius=15, fg_color="#d87455", hover_color="#b35f45", command=start_screen).pack()
+    # tk.Button(center, text="Back", command=start_screen).pack()
 
 def continue_as_guest():
     select_occupation()
