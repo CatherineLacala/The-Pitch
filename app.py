@@ -1,4 +1,5 @@
 import tkinter as tk
+import customtkinter as ctk
 from PIL import ImageTk, Image
 import re
 import userClass
@@ -58,15 +59,17 @@ def dashboard_layout(title, button_options):
         column = tk.Frame(column_frame, bg="#f2d6c2")
         column.pack(side="left", padx=30, anchor="n")
 
-        # button
-        tk.Button(column, text=button_txt, width=25, height=2, command=lambda t=button_txt: print(f"Clicked {t}")).pack()
+        # rounded button
+        button = ctk.CTkButton(column, text=button_txt, width=200, height=50, corner_radius=25, fg_color="#3a3a3a", hover_color="#555555", command=lambda t=button_txt: print(f"Clicked {t}"))
+        button.pack()
 
         # label
         tk.Label(column, text=description_txt, bg="#f2d6c2", fg="#555555", font=("Arial", 10), justify="center", wraplength=200).pack(pady=10)
 
     # back button
-    tk.Button(center, text="← Back", width=9, command=select_occupation, bg="#d87455").pack(pady=40)
-
+    back_button = ctk.CTkButton(center, text="← Back", width=80, corner_radius=15, fg_color="#d87455", hover_color="#b35f45", command=select_occupation)
+    back_button.pack(pady=40)
+    
 
 def director_dashboard():
     # button descriptions
@@ -144,9 +147,13 @@ def start_screen():
 
     tk.Label(center, text="Welcome to The Pitch!", font=("Arial", 20), bg = "#f2d6c2").pack(pady=20)
 
-    tk.Button(center, text="Sign In", width=25, command=sign_in).pack(pady=10)
-    tk.Button(center, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
-    tk.Button(center, text="Continue as Guest", width=25, command=continue_as_guest).pack(pady=10)
+    # tk.Button(center, text="Sign In", width=25, command=sign_in).pack(pady=10)
+    # tk.Button(center, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
+    # tk.Button(center, text="Continue as Guest", width=25, command=continue_as_guest).pack(pady=10)
+
+    ctk.CTkButton(center, text="Sign In", width=200, corner_radius=20, fg_color="#d87455", hover_color="#b35f45", command=sign_in).pack(pady=10)
+    ctk.CTkButton(center, text="Create Account", width=200, corner_radius=20, fg_color="#d87455", hover_color="#b35f45", command=create_account_screen).pack(pady=10)
+    ctk.CTkButton(center, text="Continue as Guest", width=200, corner_radius=20, fg_color="#d87455", hover_color="#b35f45", command=continue_as_guest).pack(pady=10)
 
 def create_account_screen():
     clear_screen()
