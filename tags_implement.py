@@ -18,7 +18,7 @@ genre = [
     "Horror",
     "Musical", 
     "Mystery",
-    "Romaance",
+    "Romance",
     "Science Fiction",
     "Sports",
     "Thriller",
