@@ -107,19 +107,17 @@ def select_occupation():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-
     # new screen asing "Who are you?"
-    tk.Label(center, text="Who are you?", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
-
+    tk.Label(center, text="Who are you?", font=("Georgia", 18), bg = "#f2d6c2").pack(pady=20)
 
     # defining the dropdown options
-    job_variable = tk.StringVar(center)
-    job_variable.set("Select a role")
+    job_variable = ctk.StringVar(value="Select a role")
+    #job_variable.set("Select a role")
     role_options = ["Screenwriter", "Producer", "Director"]
 
 
     # creating dropdown of role options
-    job_dropdown = tk.OptionMenu(center, job_variable, *role_options)
+    job_dropdown = ctk.CTkOptionMenu(center, variable=job_variable, values=role_options, width=200, height=40, corner_radius=20, fg_color="#3a3a3a", button_color="#2b2b2b", button_hover_color="#555555")
     job_dropdown.pack(pady=10)
 
 
@@ -134,7 +132,7 @@ def select_occupation():
         else:
             print(f"Logic for {selected} not implemented yet")
     # confirming option
-    confirm_button = tk.Button(center, text="Continue", command=confirm_job)
+    confirm_button = ctk.CTkButton(center, text="Continue", corner_radius=20, fg_color="#d87455", hover_color="#b35f45", command=confirm_job)
     confirm_button.pack(pady=20)
 
 
