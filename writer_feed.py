@@ -102,13 +102,20 @@ def feed_boxes(root, rows):
                                 width = 3)
         
         
+        def title_click(event, script_title):
+            print(f"Opening script: {script_title}")
         
+        tag_name = f"title_{row[0]}"
         #CHANGE THIS TO BUTTONNNNN 
         #Title
         canvas.create_text(margin+50, y1 + 20, text = row[1], 
                                fill = "#b51515",
-                               font = ('Georgia', 20))
+                               font = ('Georgia', 20, 'underline'), tags=tag_name)
         
+        canvas.tag_bind(tag_name, "<Button-1>", lambda e, t=row[1]: title_click(e, t))
+        canvas.tag_bind(tag_name, "<Enter>", lambda e: canvas.config(cursor="hand2"))
+        canvas.tag_bind(tag_name, "<Leave>", lambda e: canvas.config(cursor=""))
+
         canvas.create_text(margin+850, y1 + 20, text = row[0],
                                fill = "#b51515",
                                font = ('Georgia', 20))
