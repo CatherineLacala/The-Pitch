@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS Tags (
     Genre TEXT NOT NULL,
     Rating TEXT NOT NULL,
     Movie_or_TV TEXT NOT NULL, 
+    Summery TEXT NOT NULL, 
     Script TEXT NOT NULL
 );
 """
@@ -42,7 +43,6 @@ user_data = """
         User_ID INTEGER PRIMARY KEY NOT NULL, 
         Username TEXT NOT NULL,
         Password TEXT NOT NULL
-        
     );
 """
 
