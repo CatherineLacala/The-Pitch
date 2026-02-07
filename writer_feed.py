@@ -205,7 +205,7 @@ def feed_boxes(root, rows):
                                font = ('Georgia', 20))
         
         #Summary
-        canvas.create_text(margin+380, y1 + 50, text = row[2], 
+        canvas.create_text(margin+400, y1 + 50, text = row[2], 
                                fill = "#b51515",
                                font = ('Georgia', 15)) 
         
