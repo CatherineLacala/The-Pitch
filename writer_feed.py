@@ -29,7 +29,7 @@ def get_selection(filter, type):
     elif(type == "type"):
         filteringType = selected
 
-def filterNow():
+def filterNow(root):
     dbConnect = sqlite3.connect("tags.db")
     cursor = dbConnect.cursor()
 
@@ -41,6 +41,8 @@ def filterNow():
 
     cursor.execute(filterThings, [filteringGenre, filteringRating, filteringType])
     results = cursor.fetchall()
+
+    feed_boxes(root, results)
 
 def toggle_menu(root):
     global toggle_menu_fm
@@ -90,7 +92,7 @@ def toggle_menu(root):
         getRating = tk.Button(toggle_menu_fm, text = "Filter", command = get_selection(typeBox, "type"))
         getRating.pack(pady=5)
 
-        finish = tk.Button(toggle_menu_fm, text = "Finalize Filter", command = filterNow)
+        finish = tk.Button(toggle_menu_fm, text = "Finalize Filter", command = filterNow(root))
         finish.pack(pady=5)
     else: 
         toggle_menu_fm.destroy()
@@ -142,11 +144,6 @@ def feed(root):
     
     
     title_lb.pack(side = tk.LEFT)
-    
-    
-    rows = gather_info()
-    
-    feed_boxes(root, rows)
 
 
 
