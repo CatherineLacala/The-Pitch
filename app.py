@@ -1,4 +1,5 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 
 def clear_screen():
     # clearing screen
@@ -54,6 +55,16 @@ root.geometry("1500x900") # Set the window size
 # Add a label widget
 label = tk.Label(root, text="Welcome to The Pitch!")
 label.pack(pady=20) # Add padding for better layout
+
+# Adding an image
+logo_path = "The-Pitch-Logo.png"
+logo_image = Image.open(logo_path)
+logo_image = logo_image.resize((300,200), Image.Resampling.LANCZOS)
+
+tk_logo = ImageTk.PhotoImage(logo_image)
+logo_label = tk.Label(root, image=tk_logo)
+
+logo_label.pack(padx=10, pady=10)
 
 #creating the username
 tk.Label(root, text="Username").pack()
