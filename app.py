@@ -41,7 +41,7 @@ def director_dashboard():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Director Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
+    tk.Label(center, text="Director Dashboard", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=30)
 
     # creating frame to hold the buttons horizontally on the screen
     button_frame = tk.Frame(center)
@@ -60,7 +60,7 @@ def producer_dashboard():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Producer Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
+    tk.Label(center, text="Producer Dashboard", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=30)
 
     # creating frame to hold the buttons horizontally on the screen
     button_frame = tk.Frame(center)
@@ -80,7 +80,7 @@ def screenwriter_dashboard():
     center = tk.Frame(root, bg = "#f2d6c2",)
     center.pack(expand=True)
 
-    tk.Label(center, text="Screenwriter Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
+    tk.Label(center, text="Screenwriter Dashboard", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=30)
 
     # creating frame to hold the buttons horizontally on the screen
     button_frame = tk.Frame(center)
@@ -99,7 +99,7 @@ def select_occupation():
     center.pack(expand=True)
 
     # new screen asing "Who are you?"
-    tk.Label(center, text="Who are you?", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Who are you?", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     # defining the dropdown options
     job_variable = tk.StringVar(center)
@@ -131,7 +131,7 @@ def start_screen():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Welcome to The Pitch!", font=("Arial", 20), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Welcome to The Pitch!", font=("Comic Sans MS", 40, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     tk.Button(center, text="Sign In", width=25, command=sign_in).pack(pady=10)
     tk.Button(center, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
@@ -145,7 +145,7 @@ def create_account_screen():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Create Account", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Create Account", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     tk.Label(center, text="Username").pack()
     user_txt = tk.Entry(center)
@@ -183,7 +183,7 @@ def sign_in():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Sign In", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Sign In", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     tk.Label(center, text="Username").pack()
     user_txt = tk.Entry(center)
