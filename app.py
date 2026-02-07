@@ -45,7 +45,7 @@ def dashboard_layout(title, button_options):
     clear_screen()
     center = tk.Frame(root, bg="#f2d6c2")
     center.pack(expand=True)
-    tk.Label(center, text=title, font=("Arial", 22, "bold"), bg="#f2d6c2").pack(pady=30)
+    tk.Label(center, text=title, font=("Georgia", 22, "bold"), bg="#f2d6c2").pack(pady=30)
 
 
     # horizontal buttons
