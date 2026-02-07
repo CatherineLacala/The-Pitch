@@ -1,9 +1,31 @@
 import tkinter as tk
 
+def select_occupation():
+    # clearing screen
+    for widget in root.winfo_children():
+        widget.destroy()
+
+    # new screen asing "Who are you?"
+    tk.Label(root, text="Who are you?", font=("Arial", 18)).pack(pady=20)
+
+    # defining the dropdown options
+    job_variable = tk.StringVar(root)
+    job_variable.set("Select a role")
+    role_options = ["Screenwriter", "Producer", "Director"]
+
+    # creating dropdown of role options
+    job_dropdown = tk.OptionMenu(root, role_options, *role_options)
+    job_dropdown.pack(pady=10)
+
+    # confirming option
+    confirm_button = tk.Button(root, text="Continue", command=lambda: print(f"Selected: {role_options.get()}"))
+    confirm_button.pack(pady=20)
+
 def create_account():
     username = user_txt.get()
     password = pass_txt.get()
     print(f"Account created for: {username}")
+    select_occupation()
 
 # Create the main window
 root = tk.Tk()
