@@ -6,7 +6,7 @@ root.title("My First Screen App")
 root.geometry("400x300") # Set the window size
 
 # Add a label widget
-label = tk.Label(root, text="Hello, VS Code Screen App!")
+label = tk.Label(root, text="Welcome to The Pitch!")
 label.pack(pady=20) # Add padding for better layout
 
 # Start the Tkinter event loop
