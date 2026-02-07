@@ -8,10 +8,41 @@ Created on Sat Feb  7 10:48:51 2026
 import tkinter as tk
 from PIL import ImageTk, Image
 import re
+import tags_implement
 import sqlite3
 
 toggle_menu_fm = None
 toggle_btn = None
+
+filteringGenre = ""
+filteringRating = ""
+filteringType = ""
+
+
+def get_selection(filter, type):
+    selected = filter.curselection()
+
+    if(type == "genre"):
+        filteringGenre = selected
+    elif(type == "rating"):
+        filteringRating = selected
+    elif(type == "type"):
+        filteringType = selected
+
+def filterNow(root):
+    dbConnect = sqlite3.connect("tags.db")
+    cursor = dbConnect.cursor()
+
+    filterThings = """
+        SELECT Username, Title, Summery, Script
+        FROM Tags
+        WHERE Genre = ? AND Rating = ? AND Movie_or_TV = ?;
+    """
+
+    cursor.execute(filterThings, [filteringGenre, filteringRating, filteringType])
+    results = cursor.fetchall()
+
+    feed_boxes(root, results)
 
 def toggle_menu(root):
     global toggle_menu_fm
@@ -21,6 +52,48 @@ def toggle_menu(root):
         window_height = root.winfo_height()
         toggle_menu_fm.place(x = 0, y = 100, height = window_height, width = 200)
         toggle_btn.config(text='X')
+
+        # Filtering by genre
+        tk.Label(toggle_menu_fm, text="Filter by genre", font=("Georgia", 15), bg = "#f2d6c2").pack(pady=5)
+
+        # Creating a listbox for the genre filter
+        genreBox = tk.Listbox(toggle_menu_fm, selectmode = tk.SINGLE, height = 15)
+        genreBox.pack(padx=10, pady=5, fill="x")
+
+        for genres in tags_implement.genre:
+            genreBox.insert(tk.END, genres)
+
+        getGenres = tk.Button(toggle_menu_fm, text = "Filter", command = get_selection(genreBox, "genre"))
+        getGenres.pack(pady=5)
+
+        # Filtering by rating
+        tk.Label(toggle_menu_fm, text="Filter by rating", font=("Georgia", 15), bg = "#f2d6c2").pack(pady=5)
+
+        # Creating a listbox for the rating filter
+        ratingBox = tk.Listbox(toggle_menu_fm, selectmode = tk.SINGLE, height = 6)
+        ratingBox.pack(padx=10, pady=5, fill="x")
+
+        for rating in tags_implement.movie_rating:
+            ratingBox.insert(tk.END, rating)
+
+        getRating = tk.Button(toggle_menu_fm, text = "Filter", command = get_selection(ratingBox, "rating"))
+        getRating.pack(pady=5)
+
+        # Filtering by type
+        tk.Label(toggle_menu_fm, text="Filter by type", font=("Georgia", 15), bg = "#f2d6c2").pack(pady=5)
+
+        # Creating a listbox for the type filter
+        typeBox = tk.Listbox(toggle_menu_fm, selectmode = tk.SINGLE, height = 3)
+        typeBox.pack(padx=10, pady=5, fill="x")
+
+        for type in tags_implement.movie_or_tv:
+            typeBox.insert(tk.END, type)
+
+        getRating = tk.Button(toggle_menu_fm, text = "Filter", command = get_selection(typeBox, "type"))
+        getRating.pack(pady=5)
+
+        finish = tk.Button(toggle_menu_fm, text = "Finalize Filter", command = filterNow(root))
+        finish.pack(pady=5)
     else: 
         toggle_menu_fm.destroy()
         toggle_menu_fm = None
@@ -71,15 +144,10 @@ def feed(root):
     
     
     title_lb.pack(side = tk.LEFT)
-    
-    
-    rows = gather_info()
-    
-    feed_boxes(rows)
 
 
 
-def feed_boxes(rows): 
+def feed_boxes(root, rows): 
     canvas = tk.Canvas(root, width=1000, height=800, bg="#f2d6c2")
     canvas.pack(pady=20)
     
@@ -102,13 +170,20 @@ def feed_boxes(rows):
                                 width = 3)
         
         
+        def title_click(event, script_title):
+            print(f"Opening script: {script_title}")
         
+        tag_name = f"title_{row[0]}"
         #CHANGE THIS TO BUTTONNNNN 
         #Title
         canvas.create_text(margin+50, y1 + 20, text = row[1], 
                                fill = "#b51515",
-                               font = ('Georgia', 20))
+                               font = ('Georgia', 20, 'underline'), tags=tag_name)
         
+        canvas.tag_bind(tag_name, "<Button-1>", lambda e, t=row[1]: title_click(e, t))
+        canvas.tag_bind(tag_name, "<Enter>", lambda e: canvas.config(cursor="hand2"))
+        canvas.tag_bind(tag_name, "<Leave>", lambda e: canvas.config(cursor=""))
+
         canvas.create_text(margin+850, y1 + 20, text = row[0],
                                fill = "#b51515",
                                font = ('Georgia', 20))
@@ -121,12 +196,12 @@ def feed_boxes(rows):
         
         
     
-root = tk.Tk()
-root.title("The Pitch")
-root.geometry("1500x900") # Set the window size
+# root = tk.Tk()
+# root.title("The Pitch")
+# root.geometry("1500x900") # Set the window size
 
-feed(root)
+# feed(root)
 
-# Start the Tkinter event loop
-if __name__ == "__main__":
-    root.mainloop()
+# # Start the Tkinter event loop
+# if __name__ == "__main__":
+#     root.mainloop()

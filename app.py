@@ -57,27 +57,6 @@ def is_valid_password(password):
     return True
 
 
-# Filter by user, date, genre, rating, and movie/show
-def filterUser(filter_list):
-    # Filtering by the user
-    filteringUser = filter_list
-
-def filterDate(filter_list):
-    # Filtering by the date posted
-    filteringDate = filter_list
-
-def filterGenre(filter_list):
-    # Filtering by the genre
-    filteringGenre = filter_list
-
-def filterRating(filter_list):
-    # Filtering by the rating
-    filteringRating = filter_list
-
-def filterType(filter_list):
-    # Filtering by the type (movie or tv show)
-    filteringType = filter_list
-
 def dashboard_layout(title, button_options):
     clear_screen()
     center = tk.Frame(root, bg="#f2d6c2")
