@@ -63,17 +63,16 @@ class User:
                                     summery, 
                                     script])
         
-
-#TESTING
 '''
+#TESTING
 connect = sqlite3.connect("tags.db")
 cursor = connect.cursor()
 
 
-u = User("test_user", "randompassword")
+#u = User("test_user", "randompassword")
 
 
-u.store_script("test_title", tags_implement.genre[0],tags_implement.movie_rating[0], tags_implement.movie_or_tv[0], "Welcome to SparkHacks", "Hello Sparkhacks!")
+#u.store_script("test_title", tags_implement.genre[0],tags_implement.movie_rating[0], tags_implement.movie_or_tv[0], "Welcome to SparkHacks", "Hello Sparkhacks!")
 
 sql = "SELECT * From Tags" 
 
@@ -85,5 +84,4 @@ for row in all_rows:
     print(row)
 
 connect.close() 
-
 '''

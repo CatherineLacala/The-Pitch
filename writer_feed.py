@@ -14,13 +14,18 @@ import sqlite3
 toggle_menu_fm = None
 toggle_btn = None
 
-filteringGenre = ""
+filteringGenre =""
 filteringRating = ""
 filteringType = ""
 
-
 def get_selection(filter, type):
-    selected = filter.curselection()
+
+    ind = filter.curselection()
+
+    if not ind:
+        return
+    
+    selected = filter.get(ind[0])
 
     if(type == "genre"):
         filteringGenre = selected
@@ -36,11 +41,22 @@ def filterNow(root):
     filterThings = """
         SELECT Username, Title, Summery, Script
         FROM Tags
-        WHERE Genre = ? AND Rating = ? AND Movie_or_TV = ?;
+        WHERE Genre LIKE ? AND Rating LIKE ? AND Movie_or_TV LIKE ?;
     """
 
-    cursor.execute(filterThings, [filteringGenre, filteringRating, filteringType])
+    params = (
+        f"%{filteringGenre}%", 
+        f"%{filteringRating}%", 
+        f"%{filteringType}%"
+    )
+
+    cursor.execute(filterThings, params)
     results = cursor.fetchall()
+
+    if(len(results) == 0):
+        print("None")
+    else:
+        print(results[0][0])
 
     feed_boxes(root, results)
 
@@ -63,7 +79,7 @@ def toggle_menu(root):
         for genres in tags_implement.genre:
             genreBox.insert(tk.END, genres)
 
-        getGenres = tk.Button(toggle_menu_fm, text = "Filter", command = get_selection(genreBox, "genre"))
+        getGenres = tk.Button(toggle_menu_fm, text = "Filter", command = lambda: get_selection(genreBox, "genre"))
         getGenres.pack(pady=5)
 
         # Filtering by rating
@@ -76,7 +92,7 @@ def toggle_menu(root):
         for rating in tags_implement.movie_rating:
             ratingBox.insert(tk.END, rating)
 
-        getRating = tk.Button(toggle_menu_fm, text = "Filter", command = get_selection(ratingBox, "rating"))
+        getRating = tk.Button(toggle_menu_fm, text = "Filter", command = lambda: get_selection(ratingBox, "rating"))
         getRating.pack(pady=5)
 
         # Filtering by type
@@ -89,10 +105,10 @@ def toggle_menu(root):
         for type in tags_implement.movie_or_tv:
             typeBox.insert(tk.END, type)
 
-        getRating = tk.Button(toggle_menu_fm, text = "Filter", command = get_selection(typeBox, "type"))
+        getRating = tk.Button(toggle_menu_fm, text = "Filter", command = lambda: get_selection(typeBox, "type"))
         getRating.pack(pady=5)
 
-        finish = tk.Button(toggle_menu_fm, text = "Finalize Filter", command = filterNow(root))
+        finish = tk.Button(toggle_menu_fm, text = "Finalize Filter", command = lambda: filterNow(root))
         finish.pack(pady=5)
     else: 
         toggle_menu_fm.destroy()
