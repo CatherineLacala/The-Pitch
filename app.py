@@ -34,62 +34,57 @@ def is_valid_password(password):
         return False
     return True
 
-def director_dashboard():
+def dashboard_layout(title, button_options):
     clear_screen()
-
-    # Creating a frame to center all the elements
-    center = tk.Frame(root, bg = "#f2d6c2")
+    center = tk.Frame(root, bg="#f2d6c2")
     center.pack(expand=True)
+    tk.Label(center, text=title, font=("Arial", 22, "bold"), bg="#f2d6c2").pack(pady=30)
 
-    tk.Label(center, text="Director Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
+    # horizontal buttons
+    column_frame = tk.Frame(center, bg="#f2d6c2")
+    column_frame.pack(pady=20)
 
-    # creating frame to hold the buttons horizontally on the screen
-    button_frame = tk.Frame(center)
-    button_frame.pack(pady=20)
+    for button_txt, description_txt in button_options:
+        column = tk.Frame(column_frame, bg="#f2d6c2")
+        column.pack(side="left", padx=30, anchor="n")
 
-    # buttons added to frame side="left"
-    tk.Button(button_frame, text="Browse for Collaborators", width=25, command=lambda: print("Searching Collaborators")).pack(side="left", padx=10)
-    tk.Button(button_frame, text="Search Scripts", width=25, command=lambda: print("Searching Scripts")).pack(side="left", padx=10)
-    tk.Button(button_frame, text="Search Producers", width=25, command=lambda: print("Searching Directors")).pack(side="left", padx=10)
+        # button
+        tk.Button(column, text=button_txt, width=25, height=2, command=lambda t=button_txt: print(f"Clicked {t}")).pack()
 
+        # label
+        tk.Label(column, text=description_txt, bg="#f2d6c2", fg="#555555", font=("Arial", 10), justify="center", wraplength=200).pack(pady=10)
+
+    # back button
+    tk.Button(center, text="← Back", width=9, command=select_occupation, bg="#d87455").pack(pady=40)
+
+def director_dashboard():
+     # button descriptions
+    button_options = [
+        ("Search Scripts", "Find your next directorial masterpiece among \nthe latest community pitches."),
+        ("Browse for Collaborators", "Assemble your crew and creative \ndepartment heads for your vision."),
+        ("Search Producers", "Connect with the logistics and \nfinancing experts to get your film made.")
+    ]
+    dashboard_layout("Director Dashboard", button_options)
 
 def producer_dashboard():
-    clear_screen()
-
-    # Creating a frame to center all the elements
-    center = tk.Frame(root, bg = "#f2d6c2")
-    center.pack(expand=True)
-
-    tk.Label(center, text="Producer Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
-
-    # creating frame to hold the buttons horizontally on the screen
-    button_frame = tk.Frame(center)
-    button_frame.pack(pady=20)
-
-    # buttons added to frame side="left"
-    tk.Button(button_frame, text="Browse for Collaborators", width=25, command=lambda: print("Searching Collaborators")).pack(side="left", padx=10)
-    tk.Button(button_frame, text="Search Scripts", width=25, command=lambda: print("Searching Scripts")).pack(side="left", padx=10)
-    tk.Button(button_frame, text="Search Directors", width=25, command=lambda: print("Searching Directors")).pack(side="left", padx=10)
-
+    # button descriptions
+    button_options = [
+        ("Search Scripts", "Discover scripts and concepts \nready for production."),
+        ("Browse for Collaborators", "Connect with industry professionals \nto build your production team."),
+        ("Search Directors", "Find the right creative vision and \nleadership for your next project.")
+    ]
+    dashboard_layout("Producer Dashboard", button_options)
 
 
 def screenwriter_dashboard():
-    clear_screen()
+    # button descriptions
+    button_options = [
+        ("Pitch Idea", "Share your latest script or story \nconcept with the community."),
+        ("Browse for Collaborators", "Find producers, directors, or screenwriters \nlooking for new talent or a partner."),
+        ("Browse Ideas", "See what other writers are \nworking on for inspiration.")
+    ]
+    dashboard_layout("Screenwriter Dashboard", button_options)
 
-    # Creating a frame to center all the elements
-    center = tk.Frame(root, bg = "#f2d6c2",)
-    center.pack(expand=True)
-
-    tk.Label(center, text="Screenwriter Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
-
-    # creating frame to hold the buttons horizontally on the screen
-    button_frame = tk.Frame(center)
-    button_frame.pack(pady=20)
-
-    # 3 buttons
-    tk.Button(button_frame, text="Pitch Idea", width=25, command=lambda: print("Post Idea clicked")).pack(side="left", padx=10)
-    tk.Button(button_frame, text="Browse for Collaborators", width=25, command=lambda: print("Browse Collaborators clicked")).pack(side="left", padx=10)
-    tk.Button(button_frame, text="Browse Ideas", width=25, command=lambda: print("Browse Ideas clicked")).pack(side="left", padx=10)
 
 def select_occupation():
     clear_screen()
