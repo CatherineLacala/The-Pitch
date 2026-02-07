@@ -3,7 +3,7 @@ import tkinter as tk
 # Create the main window
 root = tk.Tk()
 root.title("My First Screen App")
-root.geometry("400x300") # Set the window size
+root.geometry("1500x900") # Set the window size
 
 # Add a label widget
 label = tk.Label(root, text="Hello, VS Code Screen App!")
