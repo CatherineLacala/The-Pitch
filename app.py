@@ -6,6 +6,7 @@ import userClass
 # storing global data
 accounts = {}
 connect = {}
+user = ""
 
 
 def add_bg():
@@ -170,6 +171,7 @@ def create_account_screen():
 
     def create_account():
         username = user_txt.get()
+        user = username;
         password = pass_txt.get()
 
         if username in accounts:
@@ -213,6 +215,7 @@ def sign_in():
 
     def sign():
         username = user_txt.get()
+        user = username;
         password = pass_txt.get()
 
 
