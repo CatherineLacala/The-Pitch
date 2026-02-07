@@ -3,6 +3,7 @@ import customtkinter as ctk
 from PIL import ImageTk, Image
 import re
 import userClass
+import writer_feed
 
 # storing global data
 accounts = {}
@@ -23,9 +24,9 @@ def add_bg():
     bg = bg.resize((1495,900), Image.Resampling.LANCZOS)
 
 
-    bg_image = ImageTk.PhotoImage(bg)
-    bg_label = tk.Label(root, image=bg_image)
-    bg_label.image = bg_image
+    root.bg_image = ImageTk.PhotoImage(bg)
+    bg_label = tk.Label(root, image=root.bg_image)
+    #bg_label.image = bg_image
     bg_label.place(x=0, y=0)
     bg_label.lower()
 
@@ -82,13 +83,19 @@ def dashboard_layout(title, button_options):
     column_frame = tk.Frame(center, bg="#f2d6c2")
     column_frame.pack(pady=20)
 
+    def click_operation(choice):
+        if choice == "Browse Ideas":
+            clear_screen()
+            writer_feed.feed(root)
+        else:
+            print(f"Clicked {choice}")
 
     for button_txt, description_txt in button_options:
         column = tk.Frame(column_frame, bg="#f2d6c2")
         column.pack(side="left", padx=30, anchor="n")
 
         # rounded button
-        button = ctk.CTkButton(column, text=button_txt, width=200, height=50, corner_radius=25, fg_color="#3a3a3a", hover_color="#555555", command=lambda t=button_txt: print(f"Clicked {t}"))
+        button = ctk.CTkButton(column, text=button_txt, width=200, height=50, corner_radius=25, fg_color="#3a3a3a", hover_color="#555555", command=lambda t=button_txt: click_operation(t))
         button.pack()
 
         # label
