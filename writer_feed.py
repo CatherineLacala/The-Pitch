@@ -75,11 +75,11 @@ def feed(root):
     
     rows = gather_info()
     
-    feed_boxes(rows)
+    feed_boxes(root, rows)
 
 
 
-def feed_boxes(rows): 
+def feed_boxes(root, rows): 
     canvas = tk.Canvas(root, width=1000, height=800, bg="#f2d6c2")
     canvas.pack(pady=20)
     
@@ -121,12 +121,12 @@ def feed_boxes(rows):
         
         
     
-root = tk.Tk()
-root.title("The Pitch")
-root.geometry("1500x900") # Set the window size
+# root = tk.Tk()
+# root.title("The Pitch")
+# root.geometry("1500x900") # Set the window size
 
-feed(root)
+# feed(root)
 
-# Start the Tkinter event loop
-if __name__ == "__main__":
-    root.mainloop()
+# # Start the Tkinter event loop
+# if __name__ == "__main__":
+#     root.mainloop()
