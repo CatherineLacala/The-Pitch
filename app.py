@@ -67,17 +67,16 @@ def director_dashboard():
     dashboard_layout("Director Dashboard", button_options)
 
 def producer_dashboard():
+
     # button descriptions
     button_options = [
         ("Search Scripts", "Discover scripts and concepts \nready for production."),
-        ("Browse for Collaborators", "Connect with industry professionals \nto build your production team."),
         ("Search Directors", "Find the right creative vision and \nleadership for your next project.")
     ]
     dashboard_layout("Producer Dashboard", button_options)
 
-
 def screenwriter_dashboard():
-    # button descriptions
+    # Creating a frame to center all the elements
     button_options = [
         ("Pitch Idea", "Share your latest script or story \nconcept with the community."),
         ("Browse for Collaborators", "Find producers, directors, or screenwriters \nlooking for new talent or a partner."),
@@ -94,7 +93,7 @@ def select_occupation():
     center.pack(expand=True)
 
     # new screen asing "Who are you?"
-    tk.Label(center, text="Who are you?", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Who are you?", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     # defining the dropdown options
     job_variable = tk.StringVar(center)
@@ -126,7 +125,7 @@ def start_screen():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Welcome to The Pitch!", font=("Arial", 20), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Welcome to The Pitch!", font=("Comic Sans MS", 40, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     tk.Button(center, text="Sign In", width=25, command=sign_in).pack(pady=10)
     tk.Button(center, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
@@ -140,7 +139,7 @@ def create_account_screen():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Create Account", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Create Account", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     tk.Label(center, text="Username").pack()
     user_txt = tk.Entry(center)
@@ -178,7 +177,7 @@ def sign_in():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Sign In", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Sign In", font=("Comic Sans MS", 30, "bold"), bg = "#f2d6c2", fg = "#b51515").pack(pady=20)
 
     tk.Label(center, text="Username").pack()
     user_txt = tk.Entry(center)
