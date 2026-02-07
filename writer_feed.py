@@ -192,7 +192,7 @@ def feed_boxes(root, rows):
         tag_name = f"title_{row[0]}"
         #CHANGE THIS TO BUTTONNNNN 
         #Title
-        canvas.create_text(margin+50, y1 + 20, text = row[1], 
+        canvas.create_text(margin+200, y1 + 20, text = row[1], 
                                fill = "#b51515",
                                font = ('Georgia', 20, 'underline'), tags=tag_name)
         
@@ -200,12 +200,12 @@ def feed_boxes(root, rows):
         canvas.tag_bind(tag_name, "<Enter>", lambda e: canvas.config(cursor="hand2"))
         canvas.tag_bind(tag_name, "<Leave>", lambda e: canvas.config(cursor=""))
 
-        canvas.create_text(margin+850, y1 + 20, text = row[0],
+        canvas.create_text(margin+800, y1 + 20, text = row[0],
                                fill = "#b51515",
                                font = ('Georgia', 20))
         
         #Summary
-        canvas.create_text(margin+100, y1 + 50, text = row[3], 
+        canvas.create_text(margin+380, y1 + 50, text = row[2], 
                                fill = "#b51515",
                                font = ('Georgia', 15)) 
         
