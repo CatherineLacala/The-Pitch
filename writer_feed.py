@@ -26,7 +26,7 @@ def toggle_menu():
         toggle_btn.config(text='☰')
 
 
-def feed():
+def feed(root):
     global toggle_btn
     
     header_frame = tk.Frame(root, bg = "#b51515", highlightbackground = "#f2d6c2", highlightthickness = 2)
@@ -58,12 +58,12 @@ def feed():
     
     title_lb.pack(side = tk.LEFT)
     
-root = tk.Tk()
-root.title("The Pitch")
-root.geometry("1500x900") # Set the window size
+# root = tk.Tk()
+# root.title("The Pitch")
+# root.geometry("1500x900") # Set the window size
 
-feed()
+# feed()
 
 # Start the Tkinter event loop
-if __name__ == "__main__":
-    root.mainloop()
+#if __name__ == "__main__":
+ #   root.mainloop()
