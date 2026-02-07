@@ -179,22 +179,6 @@ root = tk.Tk()
 root.title("The Pitch")
 root.geometry("1500x900") # Set the window size
 
-
-# try:
-#     # Adding an image
-#     logo_path = "The-Pitch-Logo.png"
-#     logo_image = Image.open(logo_path)
-#     logo_image = logo_image.resize((300,200), Image.Resampling.LANCZOS)
-
-#     tk_logo = ImageTk.PhotoImage(logo_image)
-#     logo_label = tk.Label(root, image=tk_logo)
-#     #tk.Label(root, image=tk_logo).pack(pady=10)
-#     logo_label.image = tk_logo
-#     logo_label.pack(padx=10, pady=10)
-
-# except:
-#     pass
-
 start_screen()
 
 
