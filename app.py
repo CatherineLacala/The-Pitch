@@ -145,7 +145,7 @@ def start_screen():
     center = tk.Frame(root, bg = "#f2d6c2")
     center.pack(expand=True)
 
-    tk.Label(center, text="Welcome to The Pitch!", font=("Arial", 20), bg = "#f2d6c2").pack(pady=20)
+    tk.Label(center, text="Welcome to The Pitch!", font=("Georgia", 20), bg = "#f2d6c2").pack(pady=20)
 
     # tk.Button(center, text="Sign In", width=25, command=sign_in).pack(pady=10)
     # tk.Button(center, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
