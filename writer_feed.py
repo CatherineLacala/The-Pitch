@@ -41,7 +41,7 @@ def feed():
                                highlightthickness=0,
                                command = toggle_menu)   
         
-    toggle_btn.pack(side = tk.LEFT)
+    toggle_btn.pack(padx= 20, side = tk.LEFT)
         
     title_lb = tk.Label(header_frame, text = 'What is the Sitch?', 
                                bg = "#b51515", 
