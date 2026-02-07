@@ -16,7 +16,7 @@ cursor = dbConnect.cursor()
 #info gathered when user posts 
 user_posts = """
 CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY NOT NULL, 
+    user_id INTEGER PRIMARY KEY NOT NULL, 
     User TEXT NOT NULL,
     Date_Posted DATE,
     Title TEXT NOT NULL,
@@ -31,6 +31,25 @@ cursor.execute(user_posts)
 
 dbConnect.commit()
 dbConnect.close()
+
+dbConnect = sqlite3.connect("users.db")
+cursor = dbConnect.cursor()
+
+#user info
+user_data = """
+    CREATE TABLE IF NOT EXISTS users (
+        user_id INTEGER PRIMARY KEY NOT NULL, 
+        User TEXT NOT NULL,
+        Password TEXT NOT NULL
+        
+    );
+"""
+
+cursor.execute(user_data)
+
+dbConnect.commit()
+dbConnect.close()
+
 
 
 

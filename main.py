@@ -2,6 +2,7 @@ print("Hello SparkHacks")
 
 import tkinter as tk
 from PIL import ImageTk, Image
+import tags_implement
 
 def select_occupation():
     # clearing screen
