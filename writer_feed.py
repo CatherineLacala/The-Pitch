@@ -12,7 +12,7 @@ import re
 toggle_menu_fm = None
 toggle_btn = None
 
-def toggle_menu():
+def toggle_menu(root):
     global toggle_menu_fm
     
     if toggle_menu_fm is None: 
@@ -39,7 +39,7 @@ def feed(root):
                                activeforeground = "#b51515",
                                borderwidth=0,
                                highlightthickness=0,
-                               command = toggle_menu)   
+                               command = lambda: toggle_menu(root))   
         
     toggle_btn.pack(padx= 20, side = tk.LEFT)
         

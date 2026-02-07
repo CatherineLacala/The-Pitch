@@ -39,6 +39,12 @@ def clear_screen():
     add_bg()
 
 
+def clear_screen_fully():
+    # clearing screen
+    for widget in root.winfo_children():
+        widget.destroy()
+
+
 def is_valid_password(password):
     if len(password) < 7:
         return False
@@ -85,7 +91,7 @@ def dashboard_layout(title, button_options):
 
     def click_operation(choice):
         if choice == "Browse Ideas":
-            clear_screen()
+            clear_screen_fully()
             writer_feed.feed(root)
         else:
             print(f"Clicked {choice}")

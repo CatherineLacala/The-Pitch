@@ -65,7 +65,7 @@ class User:
         
 
 #TESTING
-
+'''
 connect = sqlite3.connect("tags.db")
 cursor = connect.cursor()
 
@@ -86,3 +86,4 @@ for row in all_rows:
 
 connect.close() 
 
+'''
