@@ -8,6 +8,7 @@ Created on Sat Feb  7 10:48:51 2026
 import tkinter as tk
 from PIL import ImageTk, Image
 import re
+import sqlite3
 
 toggle_menu_fm = None
 toggle_btn = None
@@ -25,6 +26,19 @@ def toggle_menu(root):
         toggle_menu_fm = None
         toggle_btn.config(text='☰')
 
+
+def gather_info(): 
+    
+    with sqlite3.connect("tags.db") as connect:
+      cursor = connect.cursor()
+      
+      sql = "SELECT Username, Title, Summery, Script FROM Tags ORDER BY Date_Posted asc;" #fix this      
+      cursor.execute(sql)
+      
+      all_rows = cursor.fetchall()
+      
+      return all_rows 
+  
 
 def feed(root):
     global toggle_btn
@@ -58,12 +72,61 @@ def feed(root):
     
     title_lb.pack(side = tk.LEFT)
     
-# root = tk.Tk()
-# root.title("The Pitch")
-# root.geometry("1500x900") # Set the window size
+    
+    rows = gather_info()
+    
+    feed_boxes(rows)
 
-# feed()
+
+
+def feed_boxes(rows): 
+    canvas = tk.Canvas(root, width=1000, height=800, bg="#f2d6c2")
+    canvas.pack(pady=20)
+    
+    margin = 50
+    gap = 25
+    r_height = 120
+    
+    r_width = (1000 - 2 * margin)
+    i = 0
+    
+    for row in rows[:4]: 
+        y1 = margin + i * (r_height + gap)
+        i += 1
+        y2 = y1 + r_height
+    
+        canvas.create_rectangle(margin, y1, 
+                                margin + r_width, y2, 
+                                fill="white", 
+                                outline="black", 
+                                width = 3)
+        
+        
+        
+        #CHANGE THIS TO BUTTONNNNN 
+        #Title
+        canvas.create_text(margin+50, y1 + 20, text = row[1], 
+                               fill = "#b51515",
+                               font = ('Georgia', 20))
+        
+        canvas.create_text(margin+850, y1 + 20, text = row[0],
+                               fill = "#b51515",
+                               font = ('Georgia', 20))
+        
+        #Summary
+        canvas.create_text(margin+100, y1 + 50, text = row[3], 
+                               fill = "#b51515",
+                               font = ('Georgia', 15)) 
+        
+        
+        
+    
+root = tk.Tk()
+root.title("The Pitch")
+root.geometry("1500x900") # Set the window size
+
+feed(root)
 
 # Start the Tkinter event loop
-#if __name__ == "__main__":
- #   root.mainloop()
+if __name__ == "__main__":
+    root.mainloop()
