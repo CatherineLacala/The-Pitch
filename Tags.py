@@ -15,9 +15,10 @@ cursor = dbConnect.cursor()
 
 #info gathered when user posts 
 user_posts = """
-CREATE TABLE IF NOT EXISTS users (
-    user_id INTEGER PRIMARY KEY NOT NULL, 
-    User TEXT NOT NULL,
+CREATE TABLE IF NOT EXISTS Tags (
+    Post_ID INTEGER PRIMARY KEY NOT NULL, 
+    User_ID INTEGER NOT NULL,
+    Username TEXT NOT NULL,
     Date_Posted DATE,
     Title TEXT NOT NULL,
     Genre TEXT NOT NULL,
@@ -37,9 +38,9 @@ cursor = dbConnect.cursor()
 
 #user info
 user_data = """
-    CREATE TABLE IF NOT EXISTS users (
-        user_id INTEGER PRIMARY KEY NOT NULL, 
-        User TEXT NOT NULL,
+    CREATE TABLE IF NOT EXISTS Users (
+        User_ID INTEGER PRIMARY KEY NOT NULL, 
+        Username TEXT NOT NULL,
         Password TEXT NOT NULL
         
     );

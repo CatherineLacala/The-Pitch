@@ -27,7 +27,6 @@ genre = [
 
 movie_or_tv = ["Movie", "TV"]
 
-
 movie_rating = ["G", 
           "PG", 
           "PG-13", 
