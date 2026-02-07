@@ -5,10 +5,23 @@ import re
 # storing global data
 accounts = {}
 
+def add_bg():
+    # Adding a background image
+    bg = Image.open("The-Pitch-BG.png")
+    bg = bg.resize((1495,900), Image.Resampling.LANCZOS)
+
+    bg_image = ImageTk.PhotoImage(bg)
+    bg_label = tk.Label(root, image=bg_image)
+    bg_label.image = bg_image
+    bg_label.place(x=0, y=0)
+    bg_label.lower()
+
 def clear_screen():
     # clearing screen
     for widget in root.winfo_children():
         widget.destroy()
+
+    add_bg()
 
 def is_valid_password(password):
     if len(password) < 7:
@@ -23,10 +36,15 @@ def is_valid_password(password):
 
 def director_dashboard():
     clear_screen()
-    tk.Label(root, text="Director Dashboard", font=("Arial", 18)).pack(pady=30)
+
+    # Creating a frame to center all the elements
+    center = tk.Frame(root, bg = "#f2d6c2")
+    center.pack(expand=True)
+
+    tk.Label(center, text="Director Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
 
     # creating frame to hold the buttons horizontally on the screen
-    button_frame = tk.Frame(root)
+    button_frame = tk.Frame(center)
     button_frame.pack(pady=20)
 
     # buttons added to frame side="left"
@@ -37,10 +55,15 @@ def director_dashboard():
 
 def producer_dashboard():
     clear_screen()
-    tk.Label(root, text="Producer Dashboard", font=("Arial", 18)).pack(pady=30)
+
+    # Creating a frame to center all the elements
+    center = tk.Frame(root, bg = "#f2d6c2")
+    center.pack(expand=True)
+
+    tk.Label(center, text="Producer Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
 
     # creating frame to hold the buttons horizontally on the screen
-    button_frame = tk.Frame(root)
+    button_frame = tk.Frame(center)
     button_frame.pack(pady=20)
 
     # buttons added to frame side="left"
@@ -52,26 +75,39 @@ def producer_dashboard():
 
 def screenwriter_dashboard():
     clear_screen()
-    tk.Label(root, text="Screenwriter Dashboard", font=("Arial", 18)).pack(pady=30)
+
+    # Creating a frame to center all the elements
+    center = tk.Frame(root, bg = "#f2d6c2",)
+    center.pack(expand=True)
+
+    tk.Label(center, text="Screenwriter Dashboard", font=("Arial", 18), bg = "#f2d6c2").pack(pady=30)
+
+    # creating frame to hold the buttons horizontally on the screen
+    button_frame = tk.Frame(center)
+    button_frame.pack(pady=20)
 
     # 3 buttons
-    tk.Button(root, text="Pitch Idea", width=25, command=lambda: print("Post Idea clicked")).pack(pady=10)
-    tk.Button(root, text="Browse for Collaborators", width=25, command=lambda: print("Browse Collaborators clicked")).pack(pady=10)
-    tk.Button(root, text="Browse Ideas", width=25, command=lambda: print("Browse Ideas clicked")).pack(pady=10)
+    tk.Button(button_frame, text="Pitch Idea", width=25, command=lambda: print("Post Idea clicked")).pack(side="left", padx=10)
+    tk.Button(button_frame, text="Browse for Collaborators", width=25, command=lambda: print("Browse Collaborators clicked")).pack(side="left", padx=10)
+    tk.Button(button_frame, text="Browse Ideas", width=25, command=lambda: print("Browse Ideas clicked")).pack(side="left", padx=10)
 
 def select_occupation():
     clear_screen()
 
+    # Creating a frame to center all the elements
+    center = tk.Frame(root, bg = "#f2d6c2")
+    center.pack(expand=True)
+
     # new screen asing "Who are you?"
-    tk.Label(root, text="Who are you?", font=("Arial", 18)).pack(pady=20)
+    tk.Label(center, text="Who are you?", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
 
     # defining the dropdown options
-    job_variable = tk.StringVar(root)
+    job_variable = tk.StringVar(center)
     job_variable.set("Select a role")
     role_options = ["Screenwriter", "Producer", "Director"]
 
     # creating dropdown of role options
-    job_dropdown = tk.OptionMenu(root, job_variable, *role_options)
+    job_dropdown = tk.OptionMenu(center, job_variable, *role_options)
     job_dropdown.pack(pady=10)
 
     def confirm_job():
@@ -85,45 +121,41 @@ def select_occupation():
         else:
             print(f"Logic for {selected} not implemented yet")
     # confirming option
-    confirm_button = tk.Button(root, text="Continue", command=confirm_job)
+    confirm_button = tk.Button(center, text="Continue", command=confirm_job)
     confirm_button.pack(pady=20)
 
 def start_screen():
     clear_screen()
 
-    try:
-        # Adding an image
-        logo_path = "The-Pitch-Logo.png"
-        logo_image = Image.open(logo_path)
-        logo_image = logo_image.resize((300,200), Image.Resampling.LANCZOS)
+    # Creating a frame to center all the elements
+    center = tk.Frame(root, bg = "#f2d6c2")
+    center.pack(expand=True)
 
-        tk_logo = ImageTk.PhotoImage(logo_image)
-        logo_label = tk.Label(root, image=tk_logo)
-        logo_label.image = tk_logo
-        logo_label.pack(padx=10, pady=10)
-    except Exception as e:
-        print("Logo didn't load:", e)
+    tk.Label(center, text="Welcome to The Pitch!", font=("Arial", 20), bg = "#f2d6c2").pack(pady=20)
 
-    tk.Label(root, text="Welcome to The Pitch!", font=("Arial", 20)).pack(pady=20)
-
-    tk.Button(root, text="Sign In", width=25, command=sign_in).pack(pady=10)
-    tk.Button(root, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
-    tk.Button(root, text="Continue as Guest", width=25, command=continue_as_guest).pack(pady=10)
+    tk.Button(center, text="Sign In", width=25, command=sign_in).pack(pady=10)
+    tk.Button(center, text="Create Account", width=25, command=create_account_screen).pack(pady=10)
+    tk.Button(center, text="Continue as Guest", width=25, command=continue_as_guest).pack(pady=10)
 
 
 def create_account_screen():
     clear_screen()
-    tk.Label(root, text="Create Account", font=("Arial", 18)).pack(pady=20)
 
-    tk.Label(root, text="Username").pack()
-    user_txt = tk.Entry(root)
+    # Creating a frame to center all the elements
+    center = tk.Frame(root, bg = "#f2d6c2")
+    center.pack(expand=True)
+
+    tk.Label(center, text="Create Account", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+
+    tk.Label(center, text="Username").pack()
+    user_txt = tk.Entry(center)
     user_txt.pack(pady=5)
 
-    tk.Label(root, text="Password").pack()
-    pass_txt = tk.Entry(root, show="*")
+    tk.Label(center, text="Password").pack()
+    pass_txt = tk.Entry(center, show="*")
     pass_txt.pack(pady=5)
 
-    message = tk.Label(root, text="", fg="red")
+    message = tk.Label(center, text="", fg="red")
     message.pack(pady=5)
 
     def create_account():
@@ -140,23 +172,28 @@ def create_account_screen():
         
         accounts[username] = password
         select_occupation()
-    tk.Button(root, text="Create Account", command=create_account).pack(pady=15)
-    tk.Button(root, text="Back", command=start_screen).pack()
+    tk.Button(center, text="Create Account", command=create_account).pack(pady=15)
+    tk.Button(center, text="Back", command=start_screen).pack()
 
 
 def sign_in():
     clear_screen()
-    tk.Label(root, text="Sign In", font=("Arial", 18)).pack(pady=20)
+    
+    # Creating a frame to center all the elements
+    center = tk.Frame(root, bg = "#f2d6c2")
+    center.pack(expand=True)
 
-    tk.Label(root, text="Username").pack()
-    user_txt = tk.Entry(root)
+    tk.Label(center, text="Sign In", font=("Arial", 18), bg = "#f2d6c2").pack(pady=20)
+
+    tk.Label(center, text="Username").pack()
+    user_txt = tk.Entry(center)
     user_txt.pack(pady=5)
 
-    tk.Label(root, text="Password").pack()
-    pass_txt = tk.Entry(root, show="*")
+    tk.Label(center, text="Password").pack()
+    pass_txt = tk.Entry(center, show="*")
     pass_txt.pack(pady=5)
 
-    message = tk.Label(root, text="", fg="red")
+    message = tk.Label(center, text="", fg="red")
     message.pack(pady=5)
 
     def sign():
@@ -168,8 +205,8 @@ def sign_in():
             return
         select_occupation()
 
-    tk.Button(root, text="Sign In", command=sign).pack(pady=15)
-    tk.Button(root, text="Back", command=start_screen).pack()
+    tk.Button(center, text="Sign In", command=sign).pack(pady=15)
+    tk.Button(center, text="Back", command=start_screen).pack()
 
 def continue_as_guest():
     select_occupation()
