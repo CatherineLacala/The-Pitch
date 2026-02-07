@@ -1,10 +1,11 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 import re
-
+import userClass
 
 # storing global data
 accounts = {}
+connect = {}
 
 
 def add_bg():
@@ -180,6 +181,10 @@ def create_account_screen():
             return
     
         accounts[username] = password
+
+        account = userClass.User(username, password)    # Creating a user object to add to the account to database
+        connect[username] = account     # Saving the class object for the given username
+
         select_occupation()
     tk.Button(center, text="Create Account", command=create_account).pack(pady=15)
     tk.Button(center, text="Back", command=start_screen).pack()
