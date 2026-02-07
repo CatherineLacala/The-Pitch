@@ -90,6 +90,9 @@ def dashboard_layout(title, button_options):
     back_button = ctk.CTkButton(center, text="← Back", width=80, corner_radius=15, fg_color="#d87455", hover_color="#b35f45", command=select_occupation)
     back_button.pack(pady=40)
     
+     # logout button
+    back_button = ctk.CTkButton(center, text="Log Out", width=40, corner_radius=15, fg_color="#d87455", hover_color="#b35f45", command=start_screen)
+    back_button.pack(pady=40)
 
 def director_dashboard():
     # button descriptions
