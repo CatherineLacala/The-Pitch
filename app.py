@@ -24,7 +24,8 @@ def select_occupation():
 def create_account():
     username = user_txt.get()
     password = pass_txt.get()
-    print(f"Account created for: {username}")
+    text = "Account created for: " + username;
+    text_box.insert(tk.END, text)
     select_occupation()
 
 # Create the main window
@@ -49,6 +50,10 @@ pass_txt.pack(pady=5)
 # create account button
 submit_account_button = tk.Button(root, text="Create Account", command=create_account)
 submit_account_button.pack(pady=20)
+
+# Create a text box
+text_box = tk.Text(root, height=5, width=70)
+text_box.pack(pady=10)
 
 # Start the Tkinter event loop
 if __name__ == "__main__":
